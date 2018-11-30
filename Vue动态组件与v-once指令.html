@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="./vue.js"></script>
+	<title>Vue动态组件与v-once指令</title>
+</head>
+<body>
+	<div id="app">
+<!-- 		<component :is="type"></component> -->
+		<one v-if="type === 'one'"></one>
+		<two v-if="type === 'two'"></two>
+		<button @click="handleClick">Change</button>
+	</div>
+
+	<script type="text/javascript">
+
+	Vue.component('one', {
+		//将标签存入内存,提高效率
+		template: "<div v-once>child one</div>"	
+	})
+
+	Vue.component('two', {
+		template: "<div v-once>child two</div>"	
+	})
+
+	var vm = new Vue({
+		el: '#app',
+		data: {
+			type: 'one'
+		},
+		methods: {
+			handleClick: function(){
+				this.type = this.type === 'one' ? 'two' : 'one';
+			}
+		}
+			
+	})
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="./vue.js"></script>
+<!-- 	<link rel="stylesheet" type="text/css" href="./animate.css"> -->
+	<style>
+		.fade-enter, .fade-leave-to{
+			opacity: 0
+		}
+		.fade-leave-active, .fade-enter-active{
+			transition: opacity 1s;
+		}
+	</style>
+	<title>Vue中JS动画与Velocity.js</title>
+</head>
+<body>
+	<div id="app">
+		<transition name="fade" mode="out-in">
+			<component :is="type"></component>
+			<!-- 	需要加上key，否则vue会复用dom元素 -->
+			<!-- <div v-if="show" key="hello">Hello 	world</div>
+			<div v-else key="bye">Bye world</div> -->
+		</transition>
+		<button @click="handleClick">Toggle</button>
+	</div>
+
+	<script type="text/javascript">
+
+	Vue.component('child', {
+		template: '<div>child</div>'
+	})
+
+	Vue.component('child-one', {
+		template: '<div>child one</div>'
+	})
+	
+	var vm = new Vue({
+		el: '#app',	
+		data: {
+			type: 'child'
+		},
+		methods: {
+			handleClick: function(){
+				this.type = this.type === 'child' ? 'child-one' : 'child'
+			},
+		}		
+	})
+
+	</script>
+</body>
+</html>

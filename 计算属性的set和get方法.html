@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="./vue.js"></script>
+	<title>计算属性的set和get方法</title>
+</head>
+<body>
+	<div id="app">
+		{{ fullName }}
+		{{ age }}
+	</div>
+
+	<script type="text/javascript">
+		var vm = new Vue({
+			el: '#app',
+			data: {
+				firstName: 'Ricardo',
+				lastName: 'Lee',
+				age: 23
+			},			
+			computed: {
+				fullName: {
+					get: function(){
+						return this.firstName + ' ' + this.lastName;
+					},
+					set: function(value){
+						var arr = value.split(' ');
+						this.firstName = arr[0];
+						this.lastName = arr[1];
+					}
+				}
+			}
+		})
+
+	</script>
+</body>
+</html>

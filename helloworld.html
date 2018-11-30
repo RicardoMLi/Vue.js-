@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="./vue.js"></script>
+	<title>Hello world</title>
+</head>
+<body>
+	<div id="app">{{ content }}</div>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: '#app',
+			data: {
+				content: '你好啊'
+			}
+		})
+
+		//普通js写法
+		// var dom = document.getElementById('app');
+		// dom.innerHTML = '你好啊';
+		// setTimeout(function() {
+		// 	dom.innerHTML = '我很好';
+		// }, 2000)
+
+		setTimeout(function(){
+			app.$data.content = '我很好'
+		}, 2000)
+	</script>
+</body>
+</html>

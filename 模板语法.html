@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="./vue.js"></script>
+	<title>模板语法</title>
+</head>
+<body>
+	<div id="app">
+		<div>{{ name + '也转义'}}</div>
+		<div v-text="name + '也转义'"></div>
+		<div v-html="name + '不转义'"></div>
+	</div>
+
+	<script type="text/javascript">
+		var vm = new Vue({
+			el: '#app',
+			data: {
+				name: "<h1>使用v-text会将标签转义故不会显示样式</h1>"
+			}
+		})
+	</script>
+</body>
+</html>

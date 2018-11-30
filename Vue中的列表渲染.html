@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="./vue.js"></script>
+	<title>Vue中的列表渲染</title>
+</head>
+<body>
+	<div id="app">
+		<!-- key唯一且尽量不要用index,这样可以提高性能 -->
+		<!-- Vue 包含一组观察数组的变异方法，所以它们也将会触发视图更新 -->
+		<!-- push() pop() shift() unshift() splice() sort() reverse() -->
+		<!-- <template v-for="(item, index) of list" :key="item.id">
+			<div >{{ index }} ---- {{ item.text }}</div>
+			<span>{{ item.text }}</span>
+		</template>	 -->
+		<!-- 对象渲染 -->
+		<div v-for="(item, key, index) of userInfo">
+			{{ index }} ---- {{ key }} ---- {{ item }}
+		</div>
+	</div>
+	
+	<script type="text/javascript">
+
+		var vm = new Vue({
+			el: '#app',
+			data: {
+				// list: [
+				// 	{'id':'001','text':'Welcome'},
+				// 	{'id':'002','text':'home'}, 
+				// 	{'id':'003','text':'Ricardo'},
+				// 	{'id':'004','text':'You'},
+				// 	{'id':'005','text':'are'},
+				// 	{'id':'006','text':'under'},
+				// 	{'id':'007','text':'protection'} 
+				// ]
+				userInfo: {
+					name: 'Ricardo',
+					age: 23,
+					gender: 'male',
+					salary: 'secret'
+				}
+			},
+
+		})
+
+	</script>
+
+</body>
+</html>

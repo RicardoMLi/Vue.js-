@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="./vue.js"></script>
+	<title>Vue父子组件传值</title>
+</head>
+<body>
+	<div id="app">
+		<!-- 通过:绑定时传入字符串时需要加上引号 -->
+		<child :content="'hello world'"></child>
+		<!-- 不是通过:绑定时不需要加上引号 -->
+<!-- 		<child content="hello world"></child> -->
+	</div>
+	
+	<script type="text/javascript">
+
+		Vue.component('child',{
+			props:{
+				// content: [String, Number]
+				content: {
+					type: String,
+					// required: false,
+					// default: 'default value',
+					validator: function(value){
+						return (value.length > 5)
+					}
+				}
+			},
+			template: "<div>{{ content }}</div>"
+		})
+
+		var vm = new Vue({
+			el: '#app',
+			
+		})
+
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="./vue.js"></script>
+	<link rel="stylesheet" type="text/css" href="./animate.css">
+	<style>
+		/*transtition是过渡动画*/
+		.fade-enter, .fade-leave-to{
+			opacity: 0;
+		}
+		.fade-enter-active, .fade-leave-active{
+			transition: opacity 3s;
+		}
+	</style>
+	<title>Vue同时使用过渡和动画</title>
+</head>
+<body>
+	<div id="app">
+		<!-- 若需要开始就使transition有动画效果则需要添加appear和appear-active-class -->
+		<!-- animate.css是CSS动画 -->
+		<!-- duration="{enter:3000,leave:300}" -->
+		<transition :duration="3000" name="fade" appear enter-active-class="animated rubberBand fade-enter-active" leave-active-class="animated tada fade-leave-active" appear-active-class="animated rubberBand">
+			<div v-if="show">Hello 	world</div>
+		</transition>
+		<button @click="handleClick">Toggle</button>
+	</div>
+
+	<script type="text/javascript">
+	
+	var vm = new Vue({
+		el: '#app',	
+		data: {
+			show: true
+		},
+		methods: {
+			handleClick: function(){
+				this.show = ! this.show;
+			}
+		}	
+	})
+
+	</script>
+</body>
+</html>

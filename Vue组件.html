@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="./vue.js"></script>
+	<title>Vue组件</title>
+</head>
+<body>
+	<div id="app">
+	<!-- 	若ref定义的是vue子组件,则通过vm.$refs.ref_name获取的是该组件的引用 -->
+		<counter @change="handleChange" ref="one"></counter>
+		<counter @change="handleChange" ref="two"></counter>
+		<div>一共点击了: {{ total }}次</div>
+		<!-- 若ref定义的是html标签,则通过vm.$refs.ref_name获取的是该标签 -->
+		<!-- <div ref="div">haha</div> -->
+
+		<!-- <table>
+			<tbody>
+				<tr is="row"></tr>
+				<tr is="row"></tr>
+				<tr is="row"></tr>
+			</tbody>
+		</table> -->
+	</div>
+	
+	<script type="text/javascript">
+		
+		//	子组件里的data必须定义为函数不能为对象,否则报错
+		Vue.component('counter',{
+			template: '<div @click="handleClick">点击了: {{ number }}次</div>',
+			data: function(){
+				return { number: 0 }
+			},
+			methods: {
+				handleClick: function(){
+					this.number ++;
+					this.$emit('change');
+				}
+			}
+		})
+
+		//根组件里的data为对象
+		var vm = new Vue({
+			el: '#app',
+			data: {
+				total: 0
+			},
+			methods: {
+				handleChange: function(){
+					this.total = vm.$refs.one.number + vm.$refs.two.number;
+				}
+			}
+		})
+
+	</script>
+
+</body>
+</html>

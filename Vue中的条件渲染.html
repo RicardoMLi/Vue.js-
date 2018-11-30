@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="./vue.js"></script>
+	<title>Vue中的条件渲染</title>
+</head>
+<body>
+	<div id="app">
+		<!-- v-if 若js表达式为false时,v-if所在标签不存在dom里面 -->
+		<div v-if="show === 'a'">{{ message }}</div>
+		<!-- v-if 和 v-else必须连着使用(即中间不可以有其他标签) -->
+		<div v-else-if="show === 'b'">Bye World</div>
+		<div v-else>Bye World</div>
+		<!-- v-show 若js表达式为false时,v-show所在标签仍然存在dom里面,只不过存在样式 display: None -->
+<!-- 		<div v-show="show">{{ message }}</div> -->
+	</div>
+	
+	<script type="text/javascript">
+
+		var vm = new Vue({
+			el: '#app',
+			data: {
+				message: 'Hello World',
+				show: 'a'
+			},
+
+		})
+
+	</script>
+
+</body>
+</html>

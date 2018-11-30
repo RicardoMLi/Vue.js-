@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="./vue.js"></script>
+	<title>Vue插槽</title>
+</head>
+<body>
+	<div id="app">
+		<child>
+		<!-- 	具名插槽 -->
+			<div slot="header">Ricardo</div>
+			<div slot="footer">Lee</div>
+		</child>
+	</div>
+
+	<script type="text/javascript">
+	Vue.component('child', {
+		template: '<div><p>Hello</p><slot name="header">默认内容</slot><slot name="footer">默认内容</slot></div>'
+	})
+
+	var vm = new Vue({
+		el: '#app',
+			
+	})
+
+	</script>
+</body>
+</html>

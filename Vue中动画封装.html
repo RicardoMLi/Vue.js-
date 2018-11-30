@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="./vue.js"></script>
+	<title>Vue动画封装(复用)</title>
+</head> 
+<body>
+	<div id="app">
+		<child>
+			<div :show="show">Hello world</div>
+		</child>
+		<button @click="handleClick">Toggle</button>
+	</div>
+
+	<script type="text/javascript">
+
+	Vue.component('child',{
+		props:['show'],
+		template: '<transition @beforeEnter="handleBeforeEnter" @enter="handleEnter"><slot v-if="show"></slot></transition>',
+		methods: {
+			handleBeforeEnter: function(el){
+				el.style.color = 'red';
+				console.log('hah')
+			},
+			handleEnter: function(el, done){
+				setTimeout(() => {
+					el.style.color = 'green';
+					done()
+				}, 2000)
+			}
+		}
+	});
+	
+	var vm = new Vue({
+		el: '#app',	
+		data: {
+			show: false
+		},
+		methods: {
+			handleClick: function(){
+				this.show = !this.show;
+			}
+		}	
+	})
+
+	</script>
+</body>
+</html>
